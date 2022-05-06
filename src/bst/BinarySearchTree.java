@@ -123,7 +123,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 	private void preOrderRecurse(BSTNode<T> node) {
 		if(node != null)
 		{
-			System.out.println(node.data);
+			System.out.print(node.data + " ");
 			preOrderRecurse(node.leftChild);
 			preOrderRecurse(node.rightChild);
 		}
@@ -136,7 +136,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		BSTNode<T> n = root;
 		while(n != null)
 		{
-			System.out.println(n);
+			System.out.print(n + " ");
 			if(n.rightChild != null){pre.add(n.rightChild);}
 			
 			if(n.leftChild != null)
@@ -170,7 +170,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		if(node.leftChild != null) {
 			inOrderRecurse(node.leftChild);
 		}
-		System.out.println(node);
+		System.out.print(node + " ");
 		if(node.rightChild != null) {
 			inOrderRecurse(node.rightChild);
 		}
@@ -232,18 +232,18 @@ public class BinarySearchTree<T extends Comparable<T>> {
 	
 	public void postOrderRecurse(BSTNode<T> node) {
 		if (node.leftChild == null && node.rightChild == null) {
-			System.out.println(node.data);
+			System.out.print(node.data + " ");
 		}
 		if (node.leftChild != null) {
 			postOrderRecurse(node.leftChild);
 			if (node.rightChild != null) {
 				postOrderRecurse(node.rightChild);
 			}
-			System.out.println(node.data);
+			System.out.print(node.data + " ");
 		} else
 		if (node.rightChild != null){
 			postOrderRecurse(node.rightChild);
-			System.out.println(node.data);
+			System.out.print(node.data + " ");
 		}
 	}
 	
@@ -258,8 +258,15 @@ public class BinarySearchTree<T extends Comparable<T>> {
 			postHelper.push(root);
 			while(!postHelper.isEmpty()) {
 				//how should post and postHelper be updated?
+				BSTNode<T> temp = post.push(postHelper.pop());
+				if (temp.leftChild != null) {
+					postHelper.push(temp.leftChild);
+				}
+				if (temp.rightChild != null) {
+					postHelper.push(temp.rightChild);
+				}
 			}
-			
+
 			while(!post.isEmpty()) {
 				BSTNode<T> node = post.pop();
 				System.out.print(node + " ");
