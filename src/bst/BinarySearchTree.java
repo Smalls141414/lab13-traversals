@@ -185,23 +185,21 @@ public class BinarySearchTree<T extends Comparable<T>> {
 			in.add(current.leftChild);
 			current = current.leftChild;
 		}
-		BSTNode<T> temp = in.pop();
-		System.out.println(temp);
 		while(cont) {
-			if(current.rightChild != null) {
-					//System.out.println(current);
-				in.add(current.rightChild);
-				current = current.rightChild;
-					
+			BSTNode<T> temp = in.pop();
+			System.out.print(temp + " ");
+			if(temp.rightChild != null) {
+				in.add(temp.rightChild);					
+				if(temp.rightChild.leftChild!=null) {
+					in.add(temp.rightChild.leftChild);
+				}
 			}
 			else{
-				System.out.println(in.pop());
 				if(in.isEmpty()) {
 					cont = false;
 					break;
 				}
-				current = in.pop();
-				}
+			}
 			
 			
 		}
